@@ -1,8 +1,8 @@
 defaultNamespace: observe
 
 releases:
-  - name: observe-agent
+  - name: observe-agent            # The release name
     chart:
       repo: "https://observeinc.github.io/helm-charts"
-      name: "agent"
+      name: "agent"                # The chart name in that repo
       version: "0.51.1"
