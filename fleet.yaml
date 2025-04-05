@@ -5,3 +5,4 @@ releases:
     chart:
       repo: "https://observeinc.github.io/helm-charts"
       name: "agent"
+      version: "0.51.1"
