@@ -38,7 +38,7 @@ helm:
         enabled: true
       metrics:
         enabled: true
-      name: observe-agent-monitored-cluster
+      # name: observe-agent-monitored-cluster
     node:
       enabled: true
       containers:
