@@ -1,23 +1,24 @@
 defaultNamespace: observe
 
-helm:
-  chart: "agent"                    # chart name
-  repo: "https://observeinc.github.io/helm-charts"
-  version: "0.51.1"
-  valuesFrom:
-  - secretKeyRef:
-      name: agent-credentials
-      key: OBSERVE_COLLECTION_ENDPOINT
-    # targetPath: "observe.collectionEndpoint.value"
-
-  # no releaseName, no valuesFrom, minimal values
-  values:
-    cluster:
-      name: "test-minimal"
-    node:
-      enabled: true
-      containers:
-        logs:
-          enabled: true
-        metrics:
-          enabled: true
+releases:
+  - name: observe-agent
+    chart:
+      repo: "https://observeinc.github.io/helm-charts"
+      name: "agent"
+      version: "0.51.1"
+    helm:
+      valuesFrom:
+        - secretKeyRef:
+            name: agent-credentials
+            key: OBSERVE_COLLECTION_ENDPOINT
+          targetPath: "observe.collectionEndpoint.value"
+    values:
+      cluster:
+        name: "test-minimal"
+      node:
+        enabled: true
+        containers:
+          logs:
+            enabled: true
+          metrics:
+            enabled: true
