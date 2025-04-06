@@ -1,16 +1,13 @@
 defaultNamespace: observe
 
 helm:
-  chart:
-    # Combine name, repo, and version into one object
-    name: "agent"
-    repo: "https://observeinc.github.io/helm-charts"
-    version: "0.51.1"
+  # Instead of putting name/repo/version inside "chart: {}",
+  # place them as top-level fields under 'helm:'.
+  chart: "agent"
+  repo: "https://observeinc.github.io/helm-charts"
+  version: "0.51.1"
 
   releaseName: "observe-agent"
-
-  # If you like, you can also specify `namespace: "observe"` here;
-  # but defaultNamespace: observe already handles that.
 
   valuesFrom:
     - secretKeyRef:
