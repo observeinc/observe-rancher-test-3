@@ -26,6 +26,10 @@ helm:
   #         name: agent-credentials
   #         key: TRACE_TOKEN
 
+  # Enable or confirm "disablePreProcess" is false so Fleet processes templating.
+  # (This is usually the default, but some Fleet versions require you to specify.)
+  disablePreProcess: false
+  
   values:
     agent:
       selfMonitor:
@@ -38,7 +42,9 @@ helm:
         enabled: true
       metrics:
         enabled: true
-      # name: observe-agent-monitored-cluster
+      # If a cluster does not have the env label, the expansion becomes an empty string—meaning the name might become "-monitored-cluster". 
+      # If you want a fallback, you can do something like:
+      name: "${ .ClusterLabels.env | default \"unknown\" }-monitored-cluster"
     node:
       enabled: true
       containers:
@@ -61,35 +67,35 @@ helm:
         create: false
       traceToken:
         create: false
-  # Use targetCustomizations to override cluster name per environment
-  targetCustomizations:
-    - name: cluster-1
-      clusterSelector:
-        matchLabels:
-          env: "dev1"
-      values:
-        cluster:
-          name: "observe-agent-monitored-cluster-dev1"
-    - name: cluster-2
-      clusterSelector:
-        matchLabels:
-          env: "dev2"
-      values:
-        cluster:
-          name: "observe-agent-monitored-cluster-dev2"
+  # # Use targetCustomizations to override cluster name per environment
+  # targetCustomizations:
+  #   - name: cluster-1
+  #     clusterSelector:
+  #       matchLabels:
+  #         env: "dev1"
+  #     values:
+  #       cluster:
+  #         name: "observe-agent-monitored-cluster-dev1"
+  #   - name: cluster-2
+  #     clusterSelector:
+  #       matchLabels:
+  #         env: "dev2"
+  #     values:
+  #       cluster:
+  #         name: "observe-agent-monitored-cluster-dev2"
 
-    - name: cluster-3
-      clusterSelector:
-        matchLabels:
-          env: "dev3"
-      values:
-        cluster:
-          name: "observe-agent-monitored-cluster-dev3"
+  #   - name: cluster-3
+  #     clusterSelector:
+  #       matchLabels:
+  #         env: "dev3"
+  #     values:
+  #       cluster:
+  #         name: "observe-agent-monitored-cluster-dev3"
 
-    - name: cluster-4
-      clusterSelector:
-        matchLabels:
-          env: "dev4"
-      values:
-        cluster:
-          name: "observe-agent-monitored-cluster-dev4"
+  #   - name: cluster-4
+  #     clusterSelector:
+  #       matchLabels:
+  #         env: "dev4"
+  #     values:
+  #       cluster:
+  #         name: "observe-agent-monitored-cluster-dev4"
