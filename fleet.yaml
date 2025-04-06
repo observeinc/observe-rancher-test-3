@@ -26,7 +26,6 @@ helm:
   #         name: agent-credentials
   #         key: TRACE_TOKEN
 
-  # no releaseName, no valuesFrom, minimal values
   values:
     agent:
       selfMonitor:
