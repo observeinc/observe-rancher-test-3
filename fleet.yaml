@@ -44,7 +44,7 @@ helm:
         enabled: true
       # If a cluster does not have the env label, the expansion becomes an empty string—meaning the name might become "-monitored-cluster". 
       # If you want a fallback, you can do something like:
-      name: "${ .ClusterLabels.env | default \"unknown\" }-monitored-cluster"
+      name: "${ .ClusterLabels.env | default \"unknown\" }-observe-monitored-cluster"
     node:
       enabled: true
       containers:
