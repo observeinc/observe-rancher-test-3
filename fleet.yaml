@@ -31,7 +31,11 @@ helm:
       prometheusScrape:
         enabled: true
     cluster:
-      name: "test-minimal"
+      events:
+        enabled: true
+      metrics:
+        enabled: true
+      name: observe-agent-monitored-cluster
     node:
       enabled: true
       containers:
