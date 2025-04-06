@@ -9,3 +9,10 @@ helm:
   values:
     cluster:
       name: "test-minimal"
+    node:
+      enabled: true
+      containers:
+        logs:
+          enabled: true
+        metrics:
+          enabled: true
