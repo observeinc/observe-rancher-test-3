@@ -23,20 +23,9 @@ helm:
   #         key: OBSERVE_TOKEN
 
   # no releaseName, no valuesFrom, minimal values
-  # These are the rest of your chart values
   values:
-    agent:
-      selfMonitor:
-        enabled: false
-    application:
-      prometheusScrape:
-        enabled: true
     cluster:
-      events:
-        enabled: true
-      metrics:
-        enabled: true
-      name: observe-agent-monitored-cluster
+      name: "test-minimal"
     node:
       enabled: true
       containers:
@@ -44,18 +33,3 @@ helm:
           enabled: true
         metrics:
           enabled: true
-    forwarder:
-      enabled: true
-      traces:
-        enabled: true
-      metrics:
-        enabled: true
-      logs:
-        enabled: true
-    observe:
-      # We no longer hardcode .collectionEndpoint.value here,
-      # because Fleet will fill it from the secret.
-      token:
-        create: false
-      traceToken:
-        create: false
