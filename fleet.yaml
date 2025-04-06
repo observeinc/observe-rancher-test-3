@@ -10,17 +10,17 @@ helm:
   #       key: OBSERVE_COLLECTION_ENDPOINT
   #     # targetPath: "observe.collectionEndpoint.value"
 
-  valuesFrom:
-    - targetPath: "observe.collectionEndpoint.value"
-      valueFrom:
-        secretKeyRef:
-          key: OBSERVE_COLLECTION_ENDPOINT
-          name: agent-credentials
-    - targetPath: "observe.token.value"
-      valueFrom:
-        secretKeyRef:
-          name: agent-credentials
-          key: OBSERVE_TOKEN
+  # valuesFrom:
+  #   - targetPath: "observe.collectionEndpoint.value"
+  #     valueFrom:
+  #       secretKeyRef:
+  #         key: OBSERVE_COLLECTION_ENDPOINT
+  #         name: agent-credentials
+  #   - targetPath: "observe.token.value"
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: agent-credentials
+  #         key: OBSERVE_TOKEN
 
   # no releaseName, no valuesFrom, minimal values
   values:
