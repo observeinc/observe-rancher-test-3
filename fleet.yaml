@@ -24,6 +24,12 @@ helm:
 
   # no releaseName, no valuesFrom, minimal values
   values:
+    agent:
+      selfMonitor:
+        enabled: false
+    application:
+      prometheusScrape:
+        enabled: true
     cluster:
       name: "test-minimal"
     node:
