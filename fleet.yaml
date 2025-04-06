@@ -16,3 +16,8 @@ helm:
           enabled: true
         metrics:
           enabled: true
+  valuesFrom:
+    - secretKeyRef:
+        name: agent-credentials
+        key: OBSERVE_COLLECTION_ENDPOINT
+      targetPath: "observe.collectionEndpoint.value"
