@@ -8,7 +8,7 @@ helm:
     - secretKeyRef:
         name: agent-credentials
         key: OBSERVE_COLLECTION_ENDPOINT
-        targetPath: "observe.collectionEndpoint.value"
+      # targetPath: "observe.collectionEndpoint.value"
 
   # no releaseName, no valuesFrom, minimal values
   values:
