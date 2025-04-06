@@ -55,6 +55,7 @@ helm:
       # We no longer hardcode .collectionEndpoint.value here,
       # because Fleet will fill it from the secret.
       collectionEndpoint:
+        value: ""
       token:
         create: false
       traceToken:
