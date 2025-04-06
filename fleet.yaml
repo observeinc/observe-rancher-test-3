@@ -51,3 +51,10 @@ helm:
           enabled: true
         logs:
           enabled: true
+    observe:
+      # We no longer hardcode .collectionEndpoint.value here,
+      # because Fleet will fill it from the secret.
+      token:
+        create: false
+      traceToken:
+        create: false
