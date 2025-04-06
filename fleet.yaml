@@ -4,11 +4,11 @@ helm:
   chart: "agent"                    # chart name
   repo: "https://observeinc.github.io/helm-charts"
   version: "0.51.1"
-  # valuesFrom:
-  # - secretKeyRef:
-  #     name: agent-credentials
-  #     key: OBSERVE_COLLECTION_ENDPOINT
-  #   targetPath: "observe.collectionEndpoint.value"
+  valuesFrom:
+    - secretKeyRef:
+        name: agent-credentials
+        key: OBSERVE_COLLECTION_ENDPOINT
+        targetPath: "observe.collectionEndpoint.value"
 
   # no releaseName, no valuesFrom, minimal values
   values:
