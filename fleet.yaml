@@ -43,3 +43,11 @@ helm:
           enabled: true
         metrics:
           enabled: true
+      forwarder:
+        enabled: true
+        traces:
+          enabled: true
+        metrics:
+          enabled: true
+        logs:
+          enabled: true
