@@ -29,6 +29,12 @@ helm:
   # no releaseName, no valuesFrom, minimal values
   values:
     agent:
+      config:
+        global:
+          debug:
+            enabled: false
+            # values basic, normal, detailed
+            verbosity: detailed
       selfMonitor:
         enabled: false
     application:
