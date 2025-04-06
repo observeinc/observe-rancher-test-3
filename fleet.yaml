@@ -1,58 +1,11 @@
 defaultNamespace: observe
 
 helm:
-  # Instead of putting name/repo/version inside "chart: {}",
-  # place them as top-level fields under 'helm:'.
-  chart: "agent"
+  chart: "agent"                    # chart name
   repo: "https://observeinc.github.io/helm-charts"
   version: "0.51.1"
 
-  releaseName: "observe-agent"
-
-  valuesFrom:
-    - secretKeyRef:
-        name: agent-credentials
-        key: OBSERVE_COLLECTION_ENDPOINT
-      targetPath: "observe.collectionEndpoint.value"
-    - secretKeyRef:
-        name: agent-credentials
-        key: OBSERVE_TOKEN
-      targetPath: "observe.token.value"
-    - secretKeyRef:
-        name: agent-credentials
-        key: TRACE_TOKEN
-      targetPath: "observe.traceToken.value"
-
+  # no releaseName, no valuesFrom, minimal values
   values:
-    agent:
-      selfMonitor:
-        enabled: false
-    application:
-      prometheusScrape:
-        enabled: true
     cluster:
-      events:
-        enabled: true
-      metrics:
-        enabled: true
-      name: observe-agent-monitored-cluster
-    node:
-      enabled: true
-      containers:
-        logs:
-          enabled: true
-        metrics:
-          enabled: true
-    forwarder:
-      enabled: true
-      traces:
-        enabled: true
-      metrics:
-        enabled: true
-      logs:
-        enabled: true
-    observe:
-      token:
-        create: false
-      traceToken:
-        create: false
+      name: "test-minimal"
