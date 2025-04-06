@@ -1,18 +1,17 @@
 defaultNamespace: observe
 
 helm:
-  # The chart repo and name:
-  chart: "agent"
-  repo: "https://observeinc.github.io/helm-charts"
+  chart:
+    # Combine name, repo, and version into one object
+    name: "agent"
+    repo: "https://observeinc.github.io/helm-charts"
+    version: "0.51.1"
 
-  # Helm release name
   releaseName: "observe-agent"
 
-  # Since we set defaultNamespace: observe, we could omit `namespace:` here,
-  # but you can include it explicitly if you like:
-  # namespace: "observe"
+  # If you like, you can also specify `namespace: "observe"` here;
+  # but defaultNamespace: observe already handles that.
 
-  # Pull values from a preexisting secret for collection endpoint/token/trace
   valuesFrom:
     - secretKeyRef:
         name: agent-credentials
@@ -27,7 +26,6 @@ helm:
         key: TRACE_TOKEN
       targetPath: "observe.traceToken.value"
 
-  # All other Helm values go here:
   values:
     agent:
       selfMonitor:
