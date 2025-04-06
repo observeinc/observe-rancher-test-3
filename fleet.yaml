@@ -9,7 +9,6 @@ helm:
   #       name: agent-credentials
   #       key: OBSERVE_COLLECTION_ENDPOINT
   #     # targetPath: "observe.collectionEndpoint.value"
-
   valuesFrom:
     - targetPath: "observe.collectionEndpoint.value"
       valueFrom:
