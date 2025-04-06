@@ -3,28 +3,7 @@ defaultNamespace: observe
 helm:
   chart: "agent"                    # chart name
   repo: "https://observeinc.github.io/helm-charts"
-  version: "0.51.1"
-  # valuesFrom:
-  #   - secretKeyRef:
-  #       name: agent-credentials
-  #       key: OBSERVE_COLLECTION_ENDPOINT
-  #     # targetPath: "observe.collectionEndpoint.value"
-  # valuesFrom:
-  #   - targetPath: "observe.collectionEndpoint.value"
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: agent-credentials
-  #         key: OBSERVE_COLLECTION_ENDPOINT
-  #   - targetPath: "observe.token.value"
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: agent-credentials
-  #         key: OBSERVE_TOKEN
-  #   - targetPath: "observe.traceToken.value"
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: agent-credentials
-  #         key: TRACE_TOKEN
+  # version: "0.51.1"
 
   # Enable or confirm "disablePreProcess" is false so Fleet processes templating.
   # (This is usually the default, but some Fleet versions require you to specify.)
