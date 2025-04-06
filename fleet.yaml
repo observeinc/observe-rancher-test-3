@@ -62,8 +62,6 @@ helm:
         logs:
           enabled: true
     observe:
-      # We no longer hardcode .collectionEndpoint.value here,
-      # because Fleet will fill it from the secret.
       collectionEndpoint:
         value: "https://132284333042.collect.observe-eng.com/"
       token:
