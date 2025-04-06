@@ -10,17 +10,17 @@ helm:
   #       key: OBSERVE_COLLECTION_ENDPOINT
   #     # targetPath: "observe.collectionEndpoint.value"
   valuesFrom:
-    - targetPath: "observe.collectionEndpoint.value"
+    - targetPath: "values.observe.collectionEndpoint.value"
       valueFrom:
         secretKeyRef:
           name: agent-credentials
           key: OBSERVE_COLLECTION_ENDPOINT
-    - targetPath: "observe.token.value"
+    - targetPath: "values.observe.token.value"
       valueFrom:
         secretKeyRef:
           name: agent-credentials
           key: OBSERVE_TOKEN
-    - targetPath: "observe.traceToken.value"
+    - targetPath: "values.observe.traceToken.value"
       valueFrom:
         secretKeyRef:
           name: agent-credentials
