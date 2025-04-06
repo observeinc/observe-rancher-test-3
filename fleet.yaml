@@ -1,100 +1,63 @@
 defaultNamespace: observe
 
-releases:
-  - name: observe-agent
-    chart:
-      repo: "https://observeinc.github.io/helm-charts"
-      name: "agent"
-      version: "0.51.1"   # or the version you prefer
-    # Here is where we pull data from the secret:
-    # helm:
-    #   valuesFrom:
-    #     - secretKeyRef:
-    #         name: agent-credentials           # The name of the secret
-    #         key: OBSERVE_COLLECTION_ENDPOINT  # The key in the secret
-    #       targetPath: "observe.collectionEndpoint.value"
-    #     - secretKeyRef:
-    #         name: agent-credentials
-    #         key: OBSERVE_TOKEN
-    #       targetPath: "observe.token.value"
-    #     - secretKeyRef:
-    #         name: agent-credentials
-    #         key: TRACE_TOKEN
-    #       targetPath: "observe.traceToken.value"
+helm:
+  # The chart repo and name:
+  chart: "agent"
+  repo: "https://observeinc.github.io/helm-charts"
 
-    # These are the rest of your chart values
-    values:
-      agent:
-        selfMonitor:
-          enabled: false
-      application:
-        prometheusScrape:
-          enabled: true
-      cluster:
-        events:
-          enabled: true
-        metrics:
-          enabled: true
-        name: observe-agent-monitored-cluster
-      node:
+  # Helm release name
+  releaseName: "observe-agent"
+
+  # Since we set defaultNamespace: observe, we could omit `namespace:` here,
+  # but you can include it explicitly if you like:
+  # namespace: "observe"
+
+  # Pull values from a preexisting secret for collection endpoint/token/trace
+  valuesFrom:
+    - secretKeyRef:
+        name: agent-credentials
+        key: OBSERVE_COLLECTION_ENDPOINT
+      targetPath: "observe.collectionEndpoint.value"
+    - secretKeyRef:
+        name: agent-credentials
+        key: OBSERVE_TOKEN
+      targetPath: "observe.token.value"
+    - secretKeyRef:
+        name: agent-credentials
+        key: TRACE_TOKEN
+      targetPath: "observe.traceToken.value"
+
+  # All other Helm values go here:
+  values:
+    agent:
+      selfMonitor:
+        enabled: false
+    application:
+      prometheusScrape:
         enabled: true
-        containers:
-          logs:
-            enabled: true
-          metrics:
-            enabled: true
-      forwarder:
+    cluster:
+      events:
         enabled: true
-        traces:
-          enabled: true
-        metrics:
-          enabled: true
+      metrics:
+        enabled: true
+      name: observe-agent-monitored-cluster
+    node:
+      enabled: true
+      containers:
         logs:
           enabled: true
-      # observe:
-      #   # We no longer hardcode .collectionEndpoint.value here,
-      #   # because Fleet will fill it from the secret.
-      #   token:
-      #     create: false
-      #   traceToken:
-      #     create: false
-      observe:
-        collectionEndpoint:
-          value: "https://<YOUR_ID>.collect.observeinc.com"
-        token:
-          create: true
-          value: "<YOUR_OBSERVE_TOKEN>"
-
-    # Use targetCustomizations to override cluster name per environment
-    # targetCustomizations:
-    #   - name: cluster-1
-    #     clusterSelector:
-    #       matchLabels:
-    #         env: "dev1"
-    #     values:
-    #       cluster:
-    #         name: "observe-agent-monitored-cluster-1"
-
-    #   - name: cluster-2
-    #     clusterSelector:
-    #       matchLabels:
-    #         env: "dev2"
-    #     values:
-    #       cluster:
-    #         name: "observe-agent-monitored-cluster-2"
-
-    #   - name: cluster-3
-    #     clusterSelector:
-    #       matchLabels:
-    #         env: "dev3"
-    #     values:
-    #       cluster:
-    #         name: "observe-agent-monitored-cluster-3"
-
-    #   - name: cluster-4
-    #     clusterSelector:
-    #       matchLabels:
-    #         env: "dev4"
-    #     values:
-    #       cluster:
-    #         name: "observe-agent-monitored-cluster-4"
+        metrics:
+          enabled: true
+    forwarder:
+      enabled: true
+      traces:
+        enabled: true
+      metrics:
+        enabled: true
+      logs:
+        enabled: true
+    observe:
+      token:
+        create: false
+      traceToken:
+        create: false
